@@ -1,0 +1,27 @@
+<header class="header">
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <a routerLink="/" class="logo-link">
+          <h1><span class="logo-icon material-icons">storefront</span>The Pet Store</h1>
+        </a>
+      </div>
+
+      <nav class="main-nav" [class.open]="isMenuOpen">
+        <ul class="nav-list">
+          <li class="nav-item" *ngIf="!isHomePage()">
+            <a routerLink="/products" class="nav-link" routerLinkActive="active">All Categories</a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="cart-container">
+      <app-cart></app-cart>
+      </div>
+
+      <button class="menu-toggle" (click)="toggleMenu()" aria-label="Toggle menu">
+        <span class="menu-icon" [class.open]="isMenuOpen"></span>
+      </button>
+    </div>
+  </div>
+</header>

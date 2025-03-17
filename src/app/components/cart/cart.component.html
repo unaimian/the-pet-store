@@ -1,0 +1,40 @@
+<div class="cart-wrapper">
+  <button class="cart-button" (click)="toggleCart()" #cartButton>
+    <span class="cart-icon material-icons">shopping_cart</span>
+    <span class="cart-count" *ngIf="getCartItemCount() > 0">{{ getCartItemCount() }}</span>
+  </button>
+
+  <div class="cart-dropdown" *ngIf="isCartOpen" #cartDropdown>
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="close-cart" (click)="toggleCart()">×</button>
+    </div>
+
+    <div class="cart-items" *ngIf="(cart$ | async)?.length; else emptyCart">
+      <div class="cart-item" *ngFor="let item of cart$ | async">
+        <div class="item-image">
+          <img [src]="item.product.image.url" [alt]="item.product.name">
+        </div>
+        <div class="item-details">
+          <h4>{{ item.product.name }}</h4>
+          <p>{{ item.product.price | currency }} × {{ item.quantity }}</p>
+        </div>
+        <button class="remove-item" (click)="removeItem(item.product.name)">×</button>
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-total">
+          <span>Total:</span>
+          <span>{{ getCartTotal() | currency }}</span>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #emptyCart>
+      <div class="empty-cart">
+        <p>Your cart is empty</p>
+        <a routerLink="/products" class="btn btn-primary">Continue Shopping</a>
+      </div>
+    </ng-template>
+  </div>
+</div>

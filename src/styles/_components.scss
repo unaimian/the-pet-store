@@ -1,0 +1,131 @@
+// Buttons
+.btn {
+  display: inline-block;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-md);
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  @include standard-transition;
+  border: none;
+  outline: none;
+
+  &-primary {
+    background-color: var(--primary-color);
+    color: var(--text-light-color);
+    font-weight: bold;
+
+    &:hover {
+      background-color: var(--primary-dark-color);
+    }
+  }
+
+  &-secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-light-color);
+
+    &:hover {
+      background-color: var(--secondary-dark-color);
+    }
+  }
+
+  &-full {
+    @include flex-center;
+    flex: 1;
+    padding: var(--spacing-md);
+  }
+
+  &-outline {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+
+    &:hover {
+      background-color: var(--primary-color);
+      color: var(--text-light-color);
+    }
+  }
+}
+
+// Cards
+.card {
+  @include card;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-hover);
+  }
+
+  &-header {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--light-gray-color);
+  }
+
+  &-body {
+    padding: var(--spacing-md);
+  }
+
+  &-footer {
+    padding: var(--spacing-md);
+    border-top: 1px solid var(--light-gray-color);
+  }
+}
+
+// Containers
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+// Section styles
+.section {
+  margin-bottom: var(--spacing-xl);
+
+  &-title {
+    @include section-title;
+  }
+}
+
+// Loading indicators
+.loading {
+  text-align: center;
+  padding: var(--spacing-xl);
+  color: var(--text-muted-color);
+}
+
+// Grid layouts
+.grid {
+  display: grid;
+  gap: var(--spacing-md);
+
+  &-2col {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+    @include media-breakpoint-down(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &-3col {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+
+    @include media-breakpoint-down(sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &-4col {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
+    @include media-breakpoint-down(lg) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include media-breakpoint-down(sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

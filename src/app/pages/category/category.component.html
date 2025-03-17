@@ -1,0 +1,37 @@
+<div class="category-page">
+  <div class="container">
+    <div *ngIf="loading" class="loading-container">
+      <app-spinner></app-spinner>
+      <p>Finding amazing products for you...</p>
+    </div>
+
+    <ng-container *ngIf="!loading && (category$ | async) as category">
+      <a [routerLink]="['/']" class="back-link">
+        <span class="material-symbols-outlined material-icons">
+          arrow_back_ios
+        </span> Back to Categories
+      </a>
+
+      <div class="category-header">
+        <h1>{{ category.name }}</h1>
+        <p>{{ category.products?.length || 0 }} products</p>
+      </div>
+
+      <div class="products-section">
+        <ng-container *ngIf="products$ | async as products">
+
+          <div *ngIf="products.length === 0" class="no-products">
+            <p>No products found in this category.</p>
+            <a [routerLink]="['/']" class="btn-browse">Browse other categories</a>
+          </div>
+
+          <div *ngIf="products.length > 0" class="product-grid">
+            <div *ngFor="let product of products" (click)="goToProductPage(product.slug)">
+              <app-product-card [product]="product"></app-product-card>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</div>

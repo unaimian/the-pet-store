@@ -1,0 +1,110 @@
+@import 'index';
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+
+  h1 {
+    font-size: var(--font-size-xxl);
+    color: var(--text-color);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .subtitle {
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary-color);
+  }
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+
+  @include media-breakpoint-down(md) {
+    grid-template-columns: 1fr;
+  }
+
+  .category-card {
+    @include flex-column;
+    align-items: center;
+    background-color: var(--background-light-color);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    text-decoration: none;
+    box-shadow: var(--box-shadow-default);
+    @include standard-transition;
+    text-align: center;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--box-shadow-hover);
+    }
+
+    .category-icon-container {
+      width: 60px;
+      height: 60px;
+      background-color: var(--background-gray-color);
+      border-radius: 50%;
+      @include flex-center;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .category-icon {
+      color: var(--primary-color);
+    }
+
+    h3 {
+      color: var(--text-color);
+      font-size: var(--font-size-lg);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .category-items-count {
+      color: var(--text-color);
+      font-size: var(--font-size-sm);
+    }
+  }
+
+  .loading {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: var(--spacing-xl);
+    font-size: var(--font-size-lg);
+    color: var(--text-secondary);
+  }
+}
+
+.home-container {
+  padding: var(--spacing-lg) 0;
+}
+
+.banner {
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  color: var(--text-light-color);
+  text-align: center;
+  padding: var(--spacing-xl) var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--spacing-lg);
+
+  h1 {
+    font-size: var(--font-size-xxl);
+    margin-bottom: var(--spacing-sm);
+    font-weight: bold;
+  }
+
+  .subtitle {
+    font-size: var(--font-size-lg);
+    opacity: 0.9;
+  }
+}
+
+.categories-section {
+  margin-bottom: var(--spacing-xl);
+}

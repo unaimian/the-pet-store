@@ -1,0 +1,26 @@
+<div class="home-container">
+  <div class="container">
+    <div class="categories-section">
+      <div class="categories-grid">
+        <ng-container *ngIf="(categories$ | async) as categories; else loading">
+          <a
+            *ngFor="let category of categories"
+            [routerLink]="['/category', category.slug]"
+            class="category-card">
+            <div class="category-icon-container">
+              <span class="category-icon material-icons">pets</span>
+            </div>
+            <h3>{{ category.name }}</h3>
+            <p class="category-items-count">{{ category.products?.length || 0 }} products</p>
+          </a>
+        </ng-container>
+        <ng-template #loading>
+          <div class="loading">
+            <app-spinner></app-spinner>
+            <p>Loading amazing products...</p>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

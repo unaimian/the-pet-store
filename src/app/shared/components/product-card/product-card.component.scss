@@ -1,0 +1,10 @@
+@import 'index';
+
+.product-card {
+  @include product-card;
+
+  .btn {
+    align-self: flex-start;
+    margin-top: auto;
+  }
+}

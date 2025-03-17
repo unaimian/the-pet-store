@@ -1,0 +1,21 @@
+$spinner-size: 40px;
+$spinner-border-width: 4px;
+$spinner-border-color: rgba(255, 77, 79, 0.2);
+$spinner-animation-duration: 1s;
+$spinner-animation-timing-function: ease-in-out;
+
+.spinner {
+  display: inline-block;
+  width: $spinner-size;
+  height: $spinner-size;
+  border: $spinner-border-width solid $spinner-border-color;
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin $spinner-animation-duration $spinner-animation-timing-function infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

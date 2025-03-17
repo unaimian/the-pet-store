@@ -1,0 +1,49 @@
+<div class="product-page">
+  <div class="container">
+    <div *ngIf="loading" class="loading-container">
+      <app-spinner></app-spinner>
+    </div>
+
+    <ng-container *ngIf="!loading && (product$ | async) as product">
+      <div class="product-container">
+        <div class="product-image-container">
+          <img [src]="product.image.url" [alt]="product.name" class="product-image">
+        </div>
+
+        <div class="product-details">
+          <h1 class="product-title">{{ product.name }}</h1>
+          <div class="product-price">{{ product.price | currency }}</div>
+
+          <div class="countdown-timer" *ngIf="countdown$ | async as countdown">
+            <span class="icon material-icons material-symbols-outlined">
+              alarm
+            </span>
+            Order within
+            <span class="timer-digits">{{ countdown.hours | number:'2.0-0' }}:{{ countdown.minutes | number:'2.0-0'
+              }}:{{ countdown.seconds | number:'2.0-0' }}</span>
+            <span class="delivery-message"> to get it delivered tomorrow!</span>
+          </div>
+
+          <div class="product-description" [innerHTML]="product.description"></div>
+
+          <div class="product-actions">
+            <button class="btn btn-primary btn-full" (click)="addToCart(product)">
+              <span class="product-price-icon material-icons">add_shopping_cart</span>
+              Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="related-products" *ngIf="relatedProducts$ | async as relatedProducts">
+        <h2 class="section-title">You May Also Like</h2>
+        <div class="product-grid">
+          <div *ngFor="let relatedProduct of relatedProducts">
+            <a [routerLink]="['/product', relatedProduct.slug]" class="related-product-link">
+              <app-product-card [product]="relatedProduct"></app-product-card>
+            </a>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

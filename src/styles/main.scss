@@ -1,0 +1,64 @@
+
+@import 'variables';
+@import 'mixins';
+@import 'components';
+
+:root {
+  // Colors
+  @each $name, $color in $colors {
+    --#{$name}-color: #{$color};
+  }
+
+  // Typography
+  --font-family: #{$font-family};
+  @each $name, $size in $font-sizes {
+    --font-size-#{$name}: #{$size};
+  }
+
+  // Spacing
+  @each $name, $space in $spacings {
+    --spacing-#{$name}: #{$space};
+  }
+
+  // Border radius
+  @each $name, $radius in $border-radius {
+    --border-radius-#{$name}: #{$radius};
+  }
+
+  // Box shadows
+  @each $name, $shadow in $box-shadows {
+    --box-shadow-#{$name}: #{$shadow};
+  }
+
+  // For backward compatibility
+  --primary-color: #{map-get($colors, 'primary')};
+  --secondary-color: #{map-get($colors, 'secondary')};
+  --text-color: #{map-get($colors, 'text')};
+  --text-muted: #{map-get($colors, 'text-muted')};
+  --background-light: #{map-get($colors, 'background-light')};
+  --background-gray: #{map-get($colors, 'background-gray')};
+  --box-shadow: #{map-get($box-shadows, 'default')};
+  --box-shadow-hover: #{map-get($box-shadows, 'hover')};
+  --border-radius: #{map-get($border-radius, 'md')};
+
+  // Layout
+  --container-max-width: #{$container-max-width};
+  --container-padding: #{$container-padding};
+
+  // Transitions
+  --transition-speed: #{$transition-speed};
+}
+
+// Reset/Normalize styles
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--background-light-color);
+  line-height: 1.5;
+}

@@ -1,0 +1,131 @@
+// Flexbox helpers
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Transitions
+@mixin standard-transition {
+  transition: all 0.3s ease;
+}
+
+// Responsive breakpoints
+@mixin media-breakpoint-down($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (max-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  }
+}
+
+@mixin media-breakpoint-up($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @media (min-width: $breakpoint) {
+      @content;
+    }
+  }
+}
+
+// Typography
+@mixin truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Common patterns
+@mixin card {
+  background-color: var(--background-light-color);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--box-shadow-default);
+  overflow: hidden;
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+@mixin section-title {
+  position: relative;
+  margin: var(--spacing-xl) 0;
+  font-size: var(--font-size-lg);
+  text-align: left;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0px;
+
+    width: 200px;
+    height: 3px;
+    background-color: var(--primary-color);
+  }
+}
+
+@mixin product-card {
+  height: 100%;
+  @include flex-column;
+  @include card;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-hover);
+  }
+
+  .product-image {
+    height: 200px;
+    overflow: hidden;
+    @include flex-center;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .card-body {
+    padding: var(--spacing-md);
+    @include flex-column;
+    flex-grow: 1;
+  }
+
+  .product-name {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    margin-bottom: var(--spacing-sm);
+    @include truncate;
+  }
+
+  .product-price {
+    font-size: var(--font-size-md);
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-top: auto;
+    margin-bottom: var(--spacing-md);
+  }
+}

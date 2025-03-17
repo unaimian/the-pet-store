@@ -1,0 +1,123 @@
+@import 'index';
+
+.product-page {
+  padding: var(--spacing-md) 0;
+}
+
+.product-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+  background-color: var(--background-light-color);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-lg);
+  box-shadow: var(--box-shadow-default);
+
+  @include media-breakpoint-down(md) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.product-image-container {
+  overflow: hidden;
+  border-radius: var(--border-radius-md);
+  text-align: center;
+
+  .product-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    @include standard-transition;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.product-details {
+  .product-title {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-sm);
+    font-weight: bold;
+  }
+
+  .product-price {
+    font-size: var(--font-size-md);
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: var(--spacing-md);
+    display: flex;
+    align-items: center;
+
+    &-icon {
+      margin-right: var(--spacing-xs);
+    }
+  }
+
+  .product-description {
+    margin: var(--spacing-md) 0;
+    color: var(--text-muted-color);
+    line-height: 1.6;
+  }
+
+  .product-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+  }
+}
+
+.countdown-timer {
+  @include flex-center;
+  background-color: #FFF2E8;
+  border: 1px solid #FFE0CC;
+  color: var(--primary-color);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  margin: var(--spacing-md) 0;
+  text-align: center;
+  font-weight: bold;
+
+  .icon {
+    margin-right: var(--spacing-xs);
+  }
+
+  .timer-digits {
+    font-size: var(--font-size-lg);
+    padding: 0 var(--spacing-xs);
+  }
+
+  @include media-breakpoint-down(md) {
+    @include flex-column;
+  }
+}
+
+.related-products {
+  margin-top: var(--spacing-xl);
+}
+
+.related-product-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+
+  &:hover {
+    text-decoration: none;
+    opacity: 0.9;
+  }
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.loading-container {
+  @include flex-center;
+  height: 300px;
+  font-size: var(--font-size-lg);
+  color: var(--dark-gray-color);
+}
